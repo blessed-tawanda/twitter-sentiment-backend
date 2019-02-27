@@ -38,11 +38,11 @@ def twittersentiment():
 @app.route('/setsentiment', methods=['POST'])
 def setsentiment():
   tweet = request.get_json()
-  if tc.get_tweet_sentiment(tweet) == 'positive':
+  if tc.get_tweet_sentiment(tweet['text']) == 'positive':
     tweet['Class'] = 'positive'
-  elif tc.get_tweet_sentiment(tweet) == 'negative':
+  elif tc.get_tweet_sentiment(tweet['text']) == 'negative':
     tweet['Class'] = 'negative'
-  elif tc.get_tweet_sentiment(tweet) == 'neutral':
+  elif tc.get_tweet_sentiment(tweet['text']) == 'neutral':
     tweet['Class'] = 'neutral'
   
   return jsonify(tweet)
