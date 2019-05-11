@@ -2,7 +2,8 @@ import re
 import tweepy 
 from tweepy import OAuthHandler 
 from textblob import TextBlob 
-  
+from config import Configuration
+
 class TwitterClient(object): 
     ''' 
     Generic Twitter Class for sentiment analysis. 
@@ -11,11 +12,13 @@ class TwitterClient(object):
         ''' 
         Class constructor or initialization method. 
         '''
-        # keys and tokens from the Twitter Dev Console 
-        consumer_key = 'BoDKWzyGkxBHHWVDkZQNt8l3C'
-        consumer_secret = 'GwNXciayGWRc2paA5IkwMJyMoXPgioW7WUss8svJRjGvNMQVIP'
-        access_token = '2334151503-pt38pMqJlEUWsAq73lJtn5XNMrUEg6QKTNQnjEv'
-        access_token_secret = 'GOeB9qPnugYombcgulxgJw2yrbsyUeH071LtD9mARykrZ'
+        # keys and tokens from the Twitter Dev Console in config file
+        config = Configuration()
+
+        consumer_key = config.getCustomerKey()
+        consumer_secret = config.getCustomerSecret()
+        access_token = config.getAccessToken()
+        access_token_secret = config.getTokenSecret()
   
         # attempt authentication 
         try: 
@@ -50,7 +53,7 @@ class TwitterClient(object):
         else: 
             return 'negative'
   
-    def get_tweets(self, query, count = 10): 
+    def get_tweets(self, query, count = 1000): 
         ''' 
         Main function to fetch tweets and parse them. 
         '''
