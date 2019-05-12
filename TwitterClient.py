@@ -2,7 +2,7 @@ import re
 import tweepy 
 from tweepy import OAuthHandler 
 from textblob import TextBlob 
-from config import Configuration
+
 
 import os
 is_prod = os.environ.get('IS_HEROKU', None)
@@ -18,6 +18,7 @@ class TwitterClient(object):
         '''
         # keys and tokens from the Twitter Dev Console in config file
         if not is_prod:
+            from config import Configuration
             config = Configuration()
             consumer_key = config.getCustomerKey()
             consumer_secret = config.getCustomerSecret()
