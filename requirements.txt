@@ -1,0 +1,5 @@
+tweepy==3.7.0
+textblob==0.15.2
+Flask==1.0.2
+Flask-Cors==3.0.4
+gunicorn==19.9.0
